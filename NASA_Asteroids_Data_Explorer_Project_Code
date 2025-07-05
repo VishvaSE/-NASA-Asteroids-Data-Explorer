@@ -408,8 +408,14 @@ rows = cursor.fetchall()
 df = pd.DataFrame(rows, columns=columns)
 df
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-!pip install streamlit pyngrok
+# Kill any existing streamlit processes to avoid conflicts
+!pkill -f streamlit
 
+!pkill -f streamlit
+!pkill -f ngrok
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+!pip install streamlit pyngrok
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %%writefile app.py
 import streamlit as st
 import sqlite3
@@ -649,12 +655,9 @@ st.markdown("Developed by Vishva S E")
 
 conn.close()
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Kill any existing streamlit processes to avoid conflicts
-!pkill -f streamlit
-
-!pkill -f streamlit
-!pkill -f ngrok
-
+from pyngrok import ngrok
+ngrok.set_auth_token("2zHVnGmAMjcXQuDX9kXJZY1IrK3_7YRc7atRcSHpq9F26pKkw")
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 from pyngrok import ngrok
 import subprocess
 import time
@@ -670,3 +673,9 @@ public_url = ngrok.connect("http://localhost:8501")
 print(f"Your Streamlit app is live here:\n{public_url}")
 
 !ls
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#link of the dashboard
+https://0653-35-230-123-227.ngrok-free.app/
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
